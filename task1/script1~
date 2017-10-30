@@ -1,0 +1,26 @@
+#!/bin/bash
+
+echo "Создаем файлы в директориях"
+# $1=место расположения папок
+# $2=количество папок а
+# $3=количество папок b
+# $4=количество папок c
+cd $1
+for ((a = 1; a <= $2; a++))
+do
+mkdir folderA$a
+cd folderA$a
+ for ((b = 1; b <= $3; b++))
+ do
+ mkdir folderB$b
+  cd folderB$b
+     for ((c = 1; c <= $4; c++))
+     do 
+     touch text$c.txt
+     done
+  cd ..		
+ done
+cd ..
+done
+
+ls
