@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# $1 - время, на которое нужно установить будильник 
+
+echo "Привет! Это будильник!"
+echo "Введите время, на которое нужно установить будильник hh:mm:ss :"
+dNOW=$(date +%s)
+#тек в сек: date --date='2017-10-40 18:27:00 UTC+7' +%s
+dAlarm=$(date --date="$1 UTC+7" +%s)
+echo "begin"
+echo $dAlarm
+date
+date --date=@"$dAlarm"
+echo "end"
+
+h=60
+t=$(date -u +%s)
+sec=$((($dAlarm) - ($dNOW)))
+min=$(((($dAlarm) - ($dNOW))/$h))
+deltaSec=$((($dAlarm) - ($dNOW)))
+sec2=$(($deltaSec - $min*$h))
+echo "Ваш будильник прозвонит через" $min "min" $sec2 "sec"
+
+for ((a = $t; a < $t+$sec; a++))
+do
+sleep 1
+done
+echo "Это будильник! Пора вставать!"
+#mpg123 q.mp3
+
+
